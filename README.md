@@ -1,2 +1,0 @@
-# panamagrotech
-hello testing

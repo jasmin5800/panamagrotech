@@ -7,6 +7,7 @@ class Admin extends CI_Controller {
         $this->load->database();
         $this->load->library('session');
         $this->load->model('General_model');
+        $this->load->model('LogModel');
     }
 	public function index()
 	{
@@ -15,7 +16,7 @@ class Admin extends CI_Controller {
 	}
 	public function login()
 	{
-		if(isset($_SESSION['auth_user_id']) && !empty($_SESSION['auth_user_id']) && isset($_SESSION['auth_user_email']) && !empty($_SESSION['auth_user_email']) && isset($_SESSION['auth_role_id']) && !empty($_SESSION['auth_role_id']) && isset($_SESSION['auth_fullname']) && !empty($_SESSION['auth_fullname']) && isset($_SESSION['auth_image']) && !empty($_SESSION['auth_image'])){
+		if(isset($_SESSION['auth_user_id']) && !empty($_SESSION['auth_user_id']) && isset($_SESSION['auth_user_email']) && !empty($_SESSION['auth_user_email']) && isset($_SESSION['auth_role_id']) && !empty($_SESSION['auth_role_id'])){
 			redirect(base_url('dashbord'));
 		}else{
 			$this->load->view('admin/login.php');	
@@ -27,11 +28,9 @@ class Admin extends CI_Controller {
 		$password=$this->input->post('password');
 		if(isset($uname) && !empty($uname) && isset($password) && !empty($password)   ){
 		$count=$this->General_model->has_duplicate($uname, 'master_admin','username');
-	
 			if($count>0){
 				$passcheck=$this->General_model->get_row('master_admin','username',$uname);
-				
-				if( $passcheck->password=== md5($password)){
+				if( $passcheck->password=== $password){
 					$this->session->set_userdata('auth_user_id',$passcheck->id_master);
 					$this->session->set_userdata('auth_user_email',$passcheck->username);
 					$this->session->set_userdata('auth_role_id',$passcheck->role_id);
@@ -41,6 +40,7 @@ class Admin extends CI_Controller {
 					$this->session->set_userdata('auth_fullname',$profile->name);
 					$this->session->set_userdata('auth_image',$profile->image);
 					}
+					$this->LogModel->loginlog();
 					$data['successMsg'] = 'Login Successfully';
 					redirect(base_url('Dashbord'));
 					exit();
@@ -59,6 +59,9 @@ class Admin extends CI_Controller {
 	}
 	public function logout()
 	{
+		if(isset($_SESSION['auth_user_id']) && !empty($_SESSION['auth_user_id'])){
+		$this->LogModel->logoutlog();
+		}
 		session_destroy();
 		$this->session->unset_userdata('auth_user_id');
 		$this->load->view('admin/login.php');

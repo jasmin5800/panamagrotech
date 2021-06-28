@@ -3,10 +3,19 @@
     <head>
         <meta charset="utf-8" />
         <title><?php echo TITLE; ?></title>
+        <meta name="title" content="RB Textile">
+        <meta property="og:title" content="<?php echo TITLE; ?>" />
+        <meta property="og:site_name" content="Rb Textile" />
+        <meta property="og:type" content="webapplication" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <meta content="DEVLOPED BY - LARK INFOWAY.  SPECIALIZES IN WEB DEVELOPMENT, MOBILE APP DEVELOPMENT, INTERNET MARKETING, ERP SOLUTIONS, CRM SOLUTIONS, CUSTOM DEVELOPMENT, AND PORTAL DEVELOPMENT." name="description" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="keywords" content="rbtextile,rbtextile.in,textile,jetpur,rajkot,larkinfoway,process of textile,textile industry,jobwork">
+        <meta name="language" content="English">
+        <meta name="revisit-after" content=" days">
         <link rel="icon" type="image/png" href="<?php echo base_url('assets/admin/images/logo_sm.png');?>">
+
+
         <!-- App css -->
         <link href="<?php echo base_url('assets/admin/');?>css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/admin/');?>css/icons.css" rel="stylesheet" type="text/css" />
@@ -22,18 +31,6 @@
         <script src="<?php echo base_url('assets/admin/');?>/js/metisMenu.min.js"></script>
         <script src="<?php echo base_url('assets/admin/');?>/js/waves.js"></script>
         <script src="<?php echo base_url('assets/admin/');?>/js/jquery.slimscroll.js"></script>
-        <style type="text/css">
-            .text-v{
-                color: #343a40;
-            }
-            .bg-accpunt-pages {
-                background: #6D6D6D;
-                background: -webkit-linear-gradient(to left, #6D6D6D, #6D6D6D);
-                background: linear-gradient(to left, #6D6D6D, #6D6D6D);
-                padding-bottom: 0;
-                min-height: 100px !important;
-            }
-        </style>
     </head>
     <body class="bg-accpunt-pages">
         <!-- HOME -->
@@ -47,8 +44,8 @@
                                     <div class="account-logo-box">
                                         <div class="text-center">
                                             <a href="#" class="text-center">
-                                                <!-- <span class="text-v"><?php echo COMPANY ;?></span> -->
-                                                <img src=" <?php echo base_url('assets/admin/images/gurukrupa.png')?>" height="120">
+                                                <!-- <span class="text-v"><?php   ;?></span> -->
+                                                <img src=" <?php echo base_url('assets/admin/images/').LOGO_BLACK; ?>" height="80">
                                             </a>
                                         </div>
                                     </div>

@@ -13,41 +13,41 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="card-box">
                     <h4 class="header-title m-t-0 text-center m-b-30"><?php echo (($method=="edit")?"Update":"Add")?> User</h4>
                     <form role="form" id="<?php echo (($method=="edit")?"$frm_id":"$frm_id");?>">
                         <div class="form-group row">
-                            <label for="username" class="col-4 col-form-label">User Name<span class="text-danger">*</span></label>
+                            <label for="username" class="col-4 col-form-label">USER NAME<span class="text-danger">*</span></label>
                             <div class="col-7">
-                                <input type="text" name="username" required class="form-control" placeholder="User Name" value="<?php echo (($method=="edit")?$user->username:"")?>">
+                                <input type="text" name="username" required class="form-control" placeholder="USER NAME" value="<?php echo (($method=="edit")?$user->username:"")?>">
                                 <?php echo (($method=="edit")?'<input type="hidden" name="id" required  value="'.$user->id_master.'">':'')?>
                             </div>
                         </div>
                         <?php if($method=="add"){?>
                         <div class="form-group row">
-                            <label for="hori-pass1" class="col-4 col-form-label">Password<span class="text-danger">*</span></label>
+                            <label for="hori-pass1" class="col-4 col-form-label">PASSWORD<span class="text-danger">*</span></label>
                             <div class="col-7">
-                                <input id="hori-pass1" type="password" name="password" placeholder="Password" required class="form-control">
+                                <input id="hori-pass1" type="password" name="password" placeholder="PASSWORD" required class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="hori-pass2" class="col-4 col-form-label">Confirm Password
+                            <label for="hori-pass2" class="col-4 col-form-label">CONFIRM PASSWORD
                                 <span class="text-danger">*</span></label>
                             <div class="col-7">
                                 <input data-parsley-equalto="#hori-pass1" type="password" required
-                                       placeholder="Password" class="form-control" id="hori-pass2" data-parsley-required-message="Enter password" data-parsley-equalto-message="Password and conform Password are not same">
+                                       placeholder="PASSWORD" class="form-control" id="hori-pass2" data-parsley-required-message="Enter password" data-parsley-equalto-message="Password and conform Password are not same">
                             </div>
                         </div>
                         <?php } ?>
                         <div class="form-group row">
-                            <label for="mobile" class="col-4 col-form-label">Mobile No.<span class="text-danger">*</span></label>
+                            <label for="mobile" class="col-4 col-form-label">MOBILE NO<span class="text-danger">*</span></label>
                             <div class="col-7">
-                                <input type="number" placeholder="Mobile No" required data-parsley-length="[10,10]"  class="form-control" name="mobile" data-parsley-length-message="Enter valid mo no" value="<?php echo (($method=="edit")?"$user->phone":"")?>">
+                                <input type="number" placeholder="MOBILE NO" required data-parsley-length="[10,10]"  class="form-control" name="mobile" data-parsley-length-message="Enter valid mo no" value="<?php echo (($method=="edit")?"$user->phone":"")?>">
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="role" class="col-4 col-form-label">Role.<span class="text-danger">*</span></label>
+                            <label for="role" class="col-4 col-form-label">ROLE<span class="text-danger">*</span></label>
                             <div class="col-7">
                                 <select class="selectpicker" data-style="btn-custom" name="role_id">
                                     <?php foreach ($role as $role): ?>
@@ -66,7 +66,7 @@
                     </form>
                 </div> 
             </div>
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="card-box table-responsive">
                     <table id="datatable-buttons" class=" table table-striped table-bordered text-center" cellspacing="0" width="100%">
                         <thead>
@@ -75,7 +75,7 @@
                             <th>USER NAME</th>
                             <th>MOBILE NUMBER</th>
                             <th>ROLE</th>
-                            <th></th>
+                            <th>ACTION</th>
                         </tr>
                         </thead>
                     </table>
@@ -100,10 +100,11 @@
             columns: [      
                         { "data": "sr_no" },
                         { "data": "username"},
+                        { "data": "role_name" },
                         { "data": "phone" },
-                        { "data": "role" },
                         { "data": "button" },
                     ],
+            columnDefs: [{ "targets": [4],"orderable": false}],
             buttons: ['print','copy', 'excel', 'colvis'],
             lengthChange: false,
             dom: 'Blfrtip'

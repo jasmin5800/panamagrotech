@@ -1,11 +1,9 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-	
 	class General_model extends CI_Model
 	{
 		public function __construct()
 		{
 			parent::__construct();
-			
 		}
 		public function get_all($table)
 		{
@@ -20,7 +18,6 @@
 		{
 			$q=$this->db->where($primaryfield,$value);
 			$q = $this->db->get($table);			
-
 			if($q->num_rows() > 0)
 			{
 				return $q->result();
@@ -37,7 +34,7 @@
 			}
 			return false;
 		}
-		public function get_row_fild($table,$primaryfield,$id)
+		public function get_row_fild($table,$primaryfield,$fieldname,$id)
 		{
 			$this->db->select($fieldname);
 			$this->db->where($primaryfield,$id);
@@ -63,12 +60,22 @@
 		{
 			return $this->db->insert($table,$data);
 		}
-		
+		public function addid($table,$data)
+		{
+		    $this->db->insert($table, $data);
+		    return $this->db->insert_id();
+		}
 		public function update($table,$data,$primaryfield,$id)
 		{
 			$this->db->where($primaryfield, $id);
 			$q = $this->db->update($table,$data);
 			return $q;
+		}
+		public function update_where($table,$data,$where)
+		{
+		    $this->db->where($where);
+		    $q = $this->db->update($table, $data);
+		    return $q;
 		}
 		public function delete($table,$primaryfield,$id)
 		{
@@ -80,7 +87,6 @@
 			$this->db->select($fieldtocheck);
 			$this->db->where($fieldtocheck,$value);
 			$result = $this->db->get($tabletocheck);
-			
 			if($result->num_rows() > 0) {
 				return true;
 			}
@@ -91,8 +97,6 @@
 		public function has_duplicate_query($query)
 		{
 			$result =$this->db->query($query);
-			 
-			
 			if($result->num_rows() > 0) {
 				return true;
 			}
@@ -105,7 +109,6 @@
 			$this->db->select($fieldtocheck);
 			$this->db->where($fieldtocheck,$value);
 			$result = $this->db->get($tabletocheck);
-			
 			if($result->num_rows() > 0) {
 				return true;
 			}
@@ -118,11 +121,9 @@
 			$this->db->from($table);
 			$this->db->order_by($value);
 			$result = $this->db->get();
-			
 			$array = array();
 			if ($dropdown)
             $array = array("" => "Please Select");
-			
 			if($result->num_rows() > 0) {
 				foreach($result->result_array() as $row) {
 					$array[$row[$key]] = $row[$value];
@@ -135,33 +136,61 @@
 			$query=$this->db->get('category');
 			return $query->result();
 		}
-		
-		
         public function auth_check(){
-		
 		$CI =& get_instance();
 		$user_id = $CI->session->userdata('auth_user_id');		
 			if($user_id == '' && !isset($user_id)  && empty($user_id)){
 				redirect(base_url('admin/login'));
 			}
 		}
-		public function auth_master(){
-		
+		public function auth_superadmin(){
 		$CI =& get_instance();
 		$role_id = $CI->session->userdata('auth_role_id');		
-			if($role_id != '2'){
+			($role_id == '1')? '':
 				redirect(base_url('Dashbord'));
-			}
-
+			
 		}
-		public function auth_admin(){
-		
+		public function auth_role2(){
 		$CI =& get_instance();
-		$role_id = $CI->session->userdata('auth_role_id');		
-			if($role_id != '1'){
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '2') ? '' :
 				redirect(base_url('Dashbord'));
-			}
-
+			
+		}
+		public function auth_role3(){
+		$CI =& get_instance();
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '3') ? '' :
+				redirect(base_url('Dashbord'));
+			
+		}
+		public function auth_role4(){
+		$CI =& get_instance();
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '4') ? '' :
+				redirect(base_url('Dashbord'));
+			
+		}
+		public function auth_role5(){
+		$CI =& get_instance();
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '5') ? '' :
+				redirect(base_url('Dashbord'));
+			
+		}
+		public function auth_role6(){
+		$CI =& get_instance();
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '6') ? '' :
+				redirect(base_url('Dashbord'));
+			
+		}
+		public function auth_role7(){
+		$CI =& get_instance();
+		$role_id = $CI->session->userdata('auth_role_id');
+			($role_id == '1' || $role_id == '7') ? '' :
+				redirect(base_url('Dashbord'));
+			
 		}
 		public function getIndianCurrency($number)
 		{

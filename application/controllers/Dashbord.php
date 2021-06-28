@@ -1,75 +1,56 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class  Dashbord extends CI_Controller {
-
 	function __construct() {
-
         parent::__construct();
         $this->load->helper('url');
         $this->load->database();
         $this->load->library('session');
         $this->load->model('General_model');
         $this->load->model('Genral_datatable');
+        $this->General_model->auth_check();
     }
 	public function index()
 	{
-		$this->General_model->auth_check();
-
 		$data['page_title']="Dashbord";
-		if($_SESSION['auth_role_id'] =="2"){ 
-
-			$date=date("Y-m-d", strtotime("-7days"));
-			$pfine=$this->db->query("SELECT SUM(`fine`) as tfine FROM `sellpurchase_product` WHERE `date`<= '".$date."'")->row();
-			$sfine=$this->db->query("SELECT SUM(`sfine`) as sfine FROM `sell_product`")->row();
-			if(isset($pfine->tfine) && !empty($pfine->tfine) && $pfine->tfine >=$sfine->sfine){
-				$data['tfine']=($pfine->tfine-$sfine->sfine);
-			}else{
-				$data['tfine']=0;
-			}
-
-			$data['purchase']=$this->db->query("SELECT SUM(`fine`) as tfine FROM `sellpurchase_product` WHERE `date`<= '".date('Y-m-d')."2020-3-9' and `date`>='".$date."'")->row();
-			
-		}else{
-			$data['sticky_note']=$this->db->query("SELECT * FROM sticky_notes order by id ASC")->result();
-		}
+		$data['lot_count']=$this->countlot();
+		$data['user_count']=$this->countuser();
+		$data['user_party']=$this->countparty();
+		$data['user_patla']=$this->countpatla();
+		$data['user_item']=$this->countitem();
+		$data['user_transport']=$this->counttransport();
+		$data['user_emuser']=$this->countemuser();
 		$this->load->view('admin/controller/header');
 		$this->load->view('admin/controller/sidebar');
 		$this->load->view('admin/index',$data);
 		$this->load->view('admin/controller/footer');
-		
 	}
-	public function getLists(){
-			$this->General_model->auth_check();
-			$table='sell_invoice';
-			$order_column_array=array('id_sell', 'bill_type','gst_type','invoice_no','buyer_name','address','city','state','country','date','mobile','subtotal','all_gst','grandtotal');
-			$search_order= array('bill_type','invoice_no','address','buyer_name','city','date','mobile','subtotal','all_gst','grandtotal');
-			$order_by_array= array('id_sell' => 'ASC');
-	        $data = $row = array();
-	        $Master_Data = $this->Genral_datatable->getRows($_POST,$table,$order_column_array,$search_order,$order_by_array);
-	        $i = $_POST['start'];
-	        foreach($Master_Data as $m_data){
-	            $i++;
-	            $data[] = ["#".$m_data->invoice_no,
-	    					ucwords($m_data->buyer_name),
-	            			ucfirst($m_data->bill_type),		        				
-	    					date('d/m/Y',Strtotime($m_data->date)),
-	    					"₹".number_format($m_data->grandtotal,2),
-	    					'<a href="'.base_url('SellInvoice/get_editfrm/').$m_data->id_sell.'"><button type="button" class="btn btn-custom waves-effect waves-light"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-	    					<button type="button" class="btn btn-danger waves-effect waves-light" data-id="delete" data-value="'.$m_data->id_sell.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
-	    					<a href="'.base_url('SellInvoice/invoice/').$m_data->id_sell.'"><button type="button" class="btn btn-primary waves-effect waves-light"><i class="fa fa-eye"></i></button></a>
-	    					'];
-	        }
-	        $output = array(
-	            "draw" => $_POST['draw'],
-	            "recordsTotal" => $this->Genral_datatable->countAll($table),
-	            "recordsFiltered" => $this->Genral_datatable->countFiltered($_POST,$table,$order_column_array,$search_order,$order_by_array),
-	            "data" => $data,
-	        );
-	        echo json_encode($output);
+	public function countlot(){
+	$query = $this->db->query("SELECT count(id_cut) AS lot_count FROM cut")->row();
+	  	return $query->lot_count;
 	}
-	
-
-
-
+	public function countuser(){
+	$query = $this->db->query("SELECT count(id_master) AS user_count FROM master_admin WHERE status='1'")->row();
+	  	return $query->user_count;
+	}
+	public function countparty(){
+	$query = $this->db->query("SELECT count(party_id) AS party_count FROM party")->row();
+	  	return $query->party_count;
+	}
+	public function countpatla(){
+	$query = $this->db->query("SELECT count(patla_id) AS patla_count FROM patla WHERE is_delete='1' ")->row();
+	  	return $query->patla_count;
+	}
+	public function countitem(){
+	$query = $this->db->query("SELECT count(item_id) AS item_count FROM item")->row();
+	  	return $query->item_count;
+	}
+	public function counttransport(){
+	$query = $this->db->query("SELECT count(transport_id) AS transport_count FROM transport")->row();
+	  	return $query->transport_count;
+	}
+	public function countemuser(){
+	$query = $this->db->query("SELECT count(emuser_id) AS emuser_count FROM em_user")->row();
+	  	return $query->emuser_count;
+	}
 }
