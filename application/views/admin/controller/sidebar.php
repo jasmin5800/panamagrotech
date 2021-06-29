@@ -16,62 +16,11 @@
 
                     </ul>
                 </li>
-                <?php if($_SESSION['auth_role_id'] =="1"): ?>
-                <li>
-                    <a href="javascript: void(0);"> <i class="fa fa-users " aria-hidden="true"></i><span> Party </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('Party')?>">Party </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Item </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('Item')?>">Item </a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);"><i class="mdi mdi-script"></i><span>Invoice</span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('RoughInvoice')?>">JAVAK</a></li>
-                        <li><a href="<?php echo base_url('RoughPurchase')?>">AAVAK </a></li>   
-                        <li><a href="<?php echo base_url('Garanu')?>">GARANU </a></li>   
-                    </ul>
-                </li>
-                <!-- <li>
-                    <a href="javascript: void(0);"> <i class="fa fa-users " aria-hidden="true"></i><span> Acount </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('Acount')?>">Acount </a></li>
-                    </ul>
-                </li> -->
-                <li>
-                    <a href="javascript: void(0);"><i class="fa fa-rupee"></i><span>Payment </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('RoughPayment')?>">Payment </a></li>
-                    </ul>
-                </li> 
-                <li>
-                    <a href="javascript: void(0);"><i class="mdi mdi-printer"></i><span>Ledger </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('RoughPayment/fine_ledger')?>">PARTY TAREEJ</a></li>
-                        <li><a href="<?php echo base_url('RoughPayment/rs_ledger/rs')?>">RS ROJMED</a></li>
-                        <li><a href="<?php echo base_url('RoughPayment/rs_ledger/fine')?>">FINE ROJMED</a></li>
-                        <li><a href="<?php echo base_url('RoughPayment/daily/fine')?>">FINE DAILY ROJMED</a></li>
-                        <li><a href="<?php echo base_url('RoughPayment/daily/rs')?>">RS DAILY ROJMED</a></li>
-                        <li><a href="<?php echo base_url('RoughPayment/final_report')?>">FINAL REPORT</a></li>
-                    </ul>
-                </li> 
-                <li>
-                    <a href="javascript: void(0);"><i class="fa fa-trash"></i><span>Menage</span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('MenageAccount')?>">Account</a></li>
-                    </ul>
-                </li>                             
-                <?php endif;?>
-                <?php if($_SESSION['auth_role_id'] =="2"): ?>
-                <li>
+                 <li>
                     <a href="javascript: void(0);"> <i class="fa fa-users " aria-hidden="true"></i><span> Customer </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="<?php echo base_url('Customer')?>">Customer</a></li>
+                        <li><a href="<?php echo base_url('Customer/customerview')?>">Customer Detail</a></li>
                     </ul>
                 </li>
                 <li>
@@ -101,7 +50,6 @@
                         <li><a href="<?php echo base_url('SalePayment/final_report')?>">Final Report</a></li>
                     </ul>
                 </li> 
-                <?php endif;?>
             </ul>
         </div>
         <div class="clearfix"></div>

@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-8 offset-md-1">
                 <div class="card-box">
                   <h4 class="header-title m-t-0 text-center m-b-30"><?php echo (($method=="edit")?"Update":"Add")?> Customer</h4>
                   <form id="<?php echo (($method=="edit")?"$frm_id":"$frm_id");?>" class="form-horizontal" role="form" >
@@ -46,6 +46,24 @@
                           <div class="col-9">            
                               <textarea required="" class="form-control parsley-error" style="min-height: 60px;" name="address" required="" data-parsley-required-message="Address is Required" placeholder="Address"><?php echo (($method=="edit")?$result->address:"");  ?></textarea> 
                           </div>          
+                      </div>
+                      <div class="form-group row row">
+                          <label for="Bank Account No" class="col-3 col-form-label">Bank Account No<span class="text-danger">*</span></label>
+                          <div class="col-9">
+                              <input placeholder="Bank Account No" type="number" name="bank_account_no" title="Bank Account No" required="" class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->bank_account_no:"");  ?>">
+                        </div>
+                      </div>
+                      <div class="form-group row row">
+                          <label for="IFSC CODE" class="col-3 col-form-label">IFSC CODE<span class="text-danger">*</span></label>
+                          <div class="col-9">
+                              <input placeholder="IFSC CODE" type="number" name="ifsc_code" title="IFSC CODE" required="" class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->ifsc_code:"");  ?>">
+                        </div>
+                      </div>
+                      <div class="form-group row row">
+                          <label for="Debit" class="col-3 col-form-label">Opening Balance<span class="text-danger">*</span></label>
+                          <div class="col-9">
+                              <input placeholder="opening balance" type="number" name="opening_balance" title="Opening Balance" required="" class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->opening_balance:"");  ?>">
+                        </div>
                       </div>
                       <div class="form-group row">
                           <label for="city" class="col-3 col-form-label">City<span class="text-danger">*</span></label>
@@ -91,24 +109,7 @@
                   </form>
                 </div> 
             </div>
-            <div class="col-md-8">
-                <div class="card-box table-responsive">
-                    <table id="datatable-buttons" class="table table-striped table-bordered text-center" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Party Name</th>
-                            <th>Mobile No.</th>
-                            <th>Address</th>
-                            <th>City</th>
-                            <th>GST No.</th>
-                            <th>Pan No.</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                    </table>
-                </div>
-            </div>
+           
         </div>                    
     </div> 
 </div> 

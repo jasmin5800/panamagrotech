@@ -80,13 +80,13 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned r code
 /*varible for comapany*/
-defined('COMPANY_NAME')        OR define('COMPANY_NAME', "OM CASTING"); // company name
-defined('TITLE')        	   OR define('TITLE', "OM CASTING"); // company name
+defined('COMPANY_NAME')        OR define('COMPANY_NAME', "PANAM AGRO TECH"); // company name
+defined('TITLE')        	   OR define('TITLE', "PANAM AGRO TECH"); // company name
 defined('DEVELOP_BY')   	   OR define('DEVELOP_BY', "LARK INFOWAY"); // developer's name
 defined('DEVELOP_URL')  	   OR define('DEVELOP_URL', "https://www.larkinfoway.com/"); // URL
-defined('COMPANY')      	   OR define('COMPANY', "OM CASTING"); // company name
+defined('COMPANY')      	   OR define('COMPANY', "PANAM AGRO TECH"); // company name
 defined('START_YR')     	   OR define('START_YR', 2019); 
 defined('ADDRESS1')     	   OR define('ADDRESS1', "Wholesale Dealers In Silver Articles");
-defined('ADDRESS2')     	   OR define('ADDRESS2', '"Om casting" Arya Nagar Society, Street No 13, sant kabir Road, Rajkot-360003 Gujarat');
+defined('ADDRESS2')     	   OR define('ADDRESS2', '"PANAM AGRO TECH" Arya Nagar Society, Street No 13, sant kabir Road, Rajkot-360003 Gujarat');
 defined('INV_DEFULT')   	   OR define('INV_DEFULT', "#");
 defined('GST_NO')       	   OR define('GST_NO', "24AKMPR4923R1ZC");
