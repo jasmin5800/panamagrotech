@@ -12,7 +12,7 @@
                     <h4 class="page-title float-left"><?php echo $page_title; ?></h4>
                     <ol class="breadcrumb float-right">
                         <li class="breadcrumb-item"><a href="<?php echo base_url('Dashbord');?>"><?php echo COMPANY; ?></a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('Item/index');?>"><?php echo $page_title; ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('UserProfile');?>"><?php echo $page_title; ?></a></li>
                     </ol>
                     <div class="clearfix"></div>
                 </div>

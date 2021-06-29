@@ -9,46 +9,13 @@ function validateForm() {
 }
 function mastertlbobj($obj) {
     var gr_wt=parseFloat($obj.find('.mGr_W').val());
-    var bag_wt=parseFloat($obj.find('.mBag_W').val());
-    if(!bag_wt){
-      bag_wt=0;
-    }
-    var nt_wt=gr_wt-bag_wt;    
-    $obj.find('.mNet_W').val(Math.round(nt_wt));
-    var ghat=parseFloat($obj.find('.mGhat').val());
-    if(!ghat){
-        ghat=0;
-    }
-    nt_wt=parseFloat($obj.find('.mNet_W').val())
-    var tl_wt=ghat+nt_wt;
-    $obj.find('.mTtl_W').val(Math.round(tl_wt));
-    var mTouch=parseFloat($obj.find('.mTouch').val());
-    var mWastage=parseFloat($obj.find('.mWastage').val());
-    if(!mTouch){
-    }else{
-        var T_G=mTouch+mWastage;
-        $obj.find('.mT_G').val(T_G);
-        var mT_G=parseFloat($obj.find('.mT_G').val());
-        var mTtl_W=parseFloat($obj.find('.mTtl_W').val());
-            if(!mT_G || !mTtl_W)
-            {
-              return false;
-            }else{
-                var fine=(mT_G*mTtl_W/100);
-                $obj.find('.mFine').val(Math.round(fine));
-                var mNos=parseFloat($obj.find('.mNos').val());
-                var mRate=parseFloat($obj.find('.mRate').val());
-                var amount=mRate*mNos;
-                $obj.find('.mAmount').val(Math.round(amount));
-                var mTtl_W=parseFloat($obj.find('.mTtl_W').val());
-                  if(!mTtl_W){
-                  }else{
-                    calculate();
-                    $('form').parsley().reset();
-                  }
-            }
-    }  
-    /**/
+   
+        $obj.find('.mFine').val(Math.round(gr_wt));
+        
+       
+            calculate();
+            $('form').parsley().reset();
+      
 }
 function calculate(){
       var TFine = 0;
@@ -64,13 +31,34 @@ function calculate(){
         TAmount=0;
       }
       $('.tAmount').val(Math.round(TAmount));
+
+      var rfine =  $('.rFine').val() * 1;
+      var ramount = $('.rAmount').val() * 1;
+      var gfine = TFine + rfine
+      var gamount = TAmount + ramount
+      
+      $('.tAmount2').val(Math.round(gamount));
+       $('.tFine2').val(Math.round(gfine));
+      var pfine =  $('.pfine').val() * 1;
+      var pamount = $('.pamount').val() * 1;
+      var cfine = pfine - TFine;
+      var camount = pamount - TAmount;
+      $('.cfine').val(Math.abs(cfine));
+      $('.camount').val(Math.abs(camount));
+      (cfine > 0) ? $('.cfines').text("db") : $('.cfines').text("cr");
+      (camount > 0) ? $('.camounts').text("db") : $('.camounts').text("cr");
+      (cfine > 0) ? $('.cfinest').val("db") : $('.cfinest').val("cr");
+      (camount > 0) ? $('.camountst').val("db") : $('.camountst').val("cr");
 }
-    $(document).ready(function() {
+  $(document).ready(function() {
       $('form').parsley();      
       var xChildTr=$("#xChildTr").html();
       var xMsaterTr=$("#xMsaterTr").html();
       if(method=="add"){
           $("#xMsaterTr").find('.masterRmvBtn').removeClass('masterRmvBtn');
+      }else{
+          $("#xMsaterTr").remove();
+          calculate();
       }
         $('body').on('click','.masterdAddBtn', function(){
              var a=$('#mastertbl > tbody > tr:last').before("<tr>"+xMsaterTr+"</tr>");
@@ -87,38 +75,25 @@ function calculate(){
               var obj=$(this).parents('tr');
               mastertlbobj(obj)
         });
-        $('body').on('keyup','.mGhat', function(){
+        $('body').on('keyup','.mBadlo', function(){
               var obj=$(this).parents('tr');
               mastertlbobj(obj)
         });
-        $('body').on('keyup','.mBag_W', function(){
+        $('body').on('keyup','.mTf', function(){
               var obj=$(this).parents('tr');
               mastertlbobj(obj)
         });
-        $('body').on('keyup','.mNet_W', function(){
+       $('body').on('keyup','.mAmount', function(){
               var obj=$(this).parents('tr');
               mastertlbobj(obj)
         });
-        $('body').on('keyup','.mTouch', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
+        $('body').on('keyup','.rFine', function(){
+            calculate();
         });
-        $('body').on('keyup','.mLabour', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
+       $('body').on('keyup','.rAmount', function(){
+        calculate();
         });
-        $('body').on('keyup','.mWastage', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
-        });
-        $('body').on('keyup','.mRate', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
-        });
-        $('body').on('keyup','.mNos', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
-        });
+       
         $('body').on('click','[data-id=masterDltBtn]', function(){
           console.log("hello");
             var id=$(this).data("value"); 
@@ -158,6 +133,28 @@ function calculate(){
                        )
                    }
                })
+        });
+        $('body').on('change','#party_id', function(){
+				
+            var Party_Id = $(this).val();
+      
+            $.ajax({
+                url: "https://omcasting.in/RoughInvoice/get_opening/"+Party_Id,
+                 type: "POST",
+                success: function(result)
+                {
+                    var res = result.split(",");
+                    $('.pfine').val(Math.abs(res[1]));
+                    
+                    $('.pamount').val(Math.abs(res[0]));
+                    (res[1] > 0) ? $('.pfines').text("db") : $('.pfines').text("cr");
+                    (res[0] > 0) ? $('.pamounts').text("db") : $('.pamounts').text("cr");
+                    (res[1] > 0) ? $('.pfinest').val("db") : $('.pfinest').val("cr");
+                    (res[0] > 0) ? $('.pamountst').val("db") : $('.pamountst').val("cr");
+                }	
+            });
+            
+            return false;
         });
         $("select").select2();
     });

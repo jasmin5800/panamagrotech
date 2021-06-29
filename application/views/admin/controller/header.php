@@ -20,11 +20,9 @@
         <link href="<?php echo base_url('assets/admin/plugins/select2/css/select2.min.css');?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/admin/plugins/datatables/dataTables.bootstrap4.min.css');?>" rel="stylesheet" type="text/css" />        
         <link href="<?php echo base_url('assets/admin/plugins/sweet-alert2/sweetalert2.min.css'); ?>" rel="stylesheet" />
-        <link href="<?php echo base_url('assets/admin/plugins/jquery-toastr/jquery.toast.min.css');?>" rel="stylesheet" />
         <link href="<?php echo base_url('assets/admin/css/style.css');?>" rel="stylesheet" type="text/css" />
         <link href="<?php echo base_url('assets/admin/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css'); ?>" rel="stylesheet">
         <link href="<?php echo base_url('assets/admin/plugins/bootstrap-daterangepicker/daterangepicker.css'); ?>" rel="stylesheet">
-
         <script src="<?php echo base_url('assets/admin/js/jquery.min.js');?>"></script>
         <script src="<?php echo base_url('assets/admin/js/modernizr.min.js');?>"></script>
         <script src="<?php echo base_url('assets/admin/plugins/parsleyjs/parsley.min.js'); ?>"></script>

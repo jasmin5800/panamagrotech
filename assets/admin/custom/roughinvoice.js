@@ -41,26 +41,22 @@
         $obj.find('.mNet_W').val(mGross_Weight);
         var mTouch=parseFloat($obj.find('.mTouch').val());
         var mWastage=parseFloat($obj.find('.mWastage').val());
-          if(!mTouch){
-          }else{
             var T_G=mTouch+mWastage;
             $obj.find('.mT_G').val(T_G);
             var mT_G=parseFloat($obj.find('.mT_G').val());
             var mNet_W=parseFloat($obj.find('.mNet_W').val());
-              if(!mT_G || !mNet_W)
-              {
-              }else{
                 var fine=(mT_G*mNet_W/100);
+
                 $obj.find('.mFine').val(Math.round(fine));
                 var mRate=parseFloat($obj.find('.mRate').val());
+                                                 
                 var mNet_W=parseFloat($obj.find('.mNet_W').val());
-                var mJodi=parseFloat($obj.find('.mJodi').val());
-                var labour=(mRate*mJodi);
-                  $obj.find('.mLabour').val(Math.round(labour));
-                  calculate();                  
-                  $('form').parsley().reset();
-            }
-          }
+                //var mJodi=parseFloat($obj.find('.mJodi').val());
+                var labour=(mRate*mNet_W)/1000;
+              
+                $obj.find('.mLabour').val(Math.round(labour));
+                calculate();                  
+                $('form').parsley().reset();
     }
 function calculate(){
       var TFine = 0;
@@ -73,6 +69,31 @@ function calculate(){
           TLabour += parseFloat($(this).val());                 
       });
       $('.tLabour').val(Math.round(TLabour));
+     var pfine =  $('.pfine').val() * 1;
+      var pamount = $('.pamount').val() * 1;
+      var pfines =  $('.pfinest').val();
+      var pamounts = $('.pamountst').val();
+     if(pfines == "cr")
+     {
+      var cfine = TFine - pfine;
+     }
+     else{
+      var cfine = pfine + TFine;
+     }
+     if(pamounts == "cr")
+     {
+      var camount =  TLabour - pamount;
+     }
+     else{
+      var camount = pamount + TLabour;
+     }
+      $('.cfine').val(Math.abs(cfine));
+      $('.camount').val(Math.abs(camount));
+      (cfine > 0) ? $('.cfines').text("db") : $('.cfines').text("cr");
+      (camount > 0) ? $('.camounts').text("db") : $('.camounts').text("cr");
+      (cfine > 0) ? $('.cfinest').val("db") : $('.cfinest').val("cr");
+      (camount > 0) ? $('.camountst').val("db") : $('.camountst').val("cr");
+      
 }
     $(document).ready(function() {
       $('form').parsley();
@@ -113,13 +134,11 @@ function calculate(){
               mastertlbobj(obj)
         });
         $('body').on('keyup','.mRate', function(){
+            
               var obj=$(this).parents('tr');
               mastertlbobj(obj)
         });
-        $('body').on('keyup','.mJodi', function(){
-              var obj=$(this).parents('tr');
-              mastertlbobj(obj)
-        });
+       
         /*child Table */
         $('body').on('click','.chlildAddBtn', function(){
              var a=$('#childtbl > tbody > tr:last').before("<tr>"+xChildTr+"</tr>");
@@ -140,7 +159,6 @@ function calculate(){
              var obj=$(this).parents('tr');
              childrentlb(obj)
         });
-            
         $('body').on('click','[data-id=chlildDltBtn]', function(){
           console.log("hello");
             var id=$(this).data("value"); 
@@ -220,6 +238,28 @@ function calculate(){
                        )
                    }
                })
+        });
+        $('body').on('change','#party_id', function(){
+				
+            var Party_Id = $(this).val();
+      
+            $.ajax({
+                url: "https://omcasting.in/RoughInvoice/get_opening/"+Party_Id,
+                 type: "POST",
+                success: function(result)
+                {
+                    var res = result.split(",");
+                    $('.pfine').val(Math.abs(res[1]));
+                
+                $('.pamount').val(Math.abs(res[0]));
+                    (res[1] > 0) ? $('.pfines').text("db") : $('.pfines').text("cr");
+                    (res[0] > 0) ? $('.pamounts').text("db") : $('.pamounts').text("cr");
+                    (res[1] > 0) ? $('.pfinest').val("db") : $('.pfinest').val("cr");
+                    (res[0] > 0) ? $('.pamountst').val("db") : $('.pamountst').val("cr");
+                }	
+            });
+            
+            return false;
         });
         $("select").select2();
     });

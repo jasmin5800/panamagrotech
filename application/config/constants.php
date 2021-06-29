@@ -1,6 +1,5 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 /*
 |--------------------------------------------------------------------------
 | Display Debug backtrace
@@ -12,7 +11,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 defined('SHOW_DEBUG_BACKTRACE') OR define('SHOW_DEBUG_BACKTRACE', TRUE);
-
 /*
 |--------------------------------------------------------------------------
 | File and Directory Modes
@@ -30,7 +28,6 @@ defined('FILE_READ_MODE')  OR define('FILE_READ_MODE', 0644);
 defined('FILE_WRITE_MODE') OR define('FILE_WRITE_MODE', 0666);
 defined('DIR_READ_MODE')   OR define('DIR_READ_MODE', 0755);
 defined('DIR_WRITE_MODE')  OR define('DIR_WRITE_MODE', 0755);
-
 /*
 |--------------------------------------------------------------------------
 | File Stream Modes
@@ -47,7 +44,6 @@ defined('FOPEN_WRITE_CREATE')                   OR define('FOPEN_WRITE_CREATE', 
 defined('FOPEN_READ_WRITE_CREATE')              OR define('FOPEN_READ_WRITE_CREATE', 'a+b');
 defined('FOPEN_WRITE_CREATE_STRICT')            OR define('FOPEN_WRITE_CREATE_STRICT', 'xb');
 defined('FOPEN_READ_WRITE_CREATE_STRICT')       OR define('FOPEN_READ_WRITE_CREATE_STRICT', 'x+b');
-
 /*
 |--------------------------------------------------------------------------
 | Exit Status Codes
@@ -82,36 +78,15 @@ defined('EXIT_UNKNOWN_METHOD') OR define('EXIT_UNKNOWN_METHOD', 6); // unknown c
 defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user input
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
-defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
-
-
-
-defined('COMPANY_NAME')        OR define('COMPANY_NAME', "RBTEXTILE"); // company name
-defined('TITLE')        	   OR define('TITLE', "RBTEXTILE || LARK INFOWAY"); // company name
+defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned r code
+/*varible for comapany*/
+defined('COMPANY_NAME')        OR define('COMPANY_NAME', "OM CASTING"); // company name
+defined('TITLE')        	   OR define('TITLE', "OM CASTING"); // company name
 defined('DEVELOP_BY')   	   OR define('DEVELOP_BY', "LARK INFOWAY"); // developer's name
 defined('DEVELOP_URL')  	   OR define('DEVELOP_URL', "https://www.larkinfoway.com/"); // URL
-defined('COMPANY')      	   OR define('COMPANY', "Rb Textile"); // company name
+defined('COMPANY')      	   OR define('COMPANY', "OM CASTING"); // company name
 defined('START_YR')     	   OR define('START_YR', 2019); 
-
-
-
-defined('LOGO_BLACK')     	   OR define('LOGO_BLACK', "lark-b.png"); 
-defined('LOGO_WHITE')     	   OR define('LOGO_WHITE', "lark-w.png"); 
-defined('USER_LOGO')     	   OR define('USER_LOGO', "common.png"); 
-defined('LOGO_SIDEBAR')    	   OR define('LOGO_SIDEBAR', "lark-logo.png"); 
-
-
-defined('TAX')   OR define('TAX', 5); 
-defined('LOT')   OR define('LOT', "L");
-defined('STARTLOT')   OR define('STARTLOT', 1);
-defined('HSN')   OR define('HSN',  5208);
- 
-
-defined('FULL_NAME')   OR define('FULL_NAME', "TEXTILE PVT. LTD."); 
-defined('COM_HEADER')   OR define('COM_HEADER', "Mfg. Cotton Sarees, Kitanga, Khanga & Dress Materials."); 
-defined('ADDRESS1')    OR define('ADDRESS1', ', JETPUR-360370');
-defined('ADDRESS2')    OR define('ADDRESS2', 'Champrajpur Road, Near Bhojadhar, B/h. Mayur Plastic, JETPUR-360370'); 
-defined('GST_NO')   OR define('GST_NO', "1235234123"); 
-defined('PAN_NO')   OR define('PAN_NO', "AAJCR1231231232380L"); 
-defined('MOBILE')   OR define('MOBILE', "1234124231230"); 
-defined('SUBJECT')   OR define('SUBJECT', "Subject to JETPUR Jurisdiction"); 
+defined('ADDRESS1')     	   OR define('ADDRESS1', "Wholesale Dealers In Silver Articles");
+defined('ADDRESS2')     	   OR define('ADDRESS2', '"Om casting" Arya Nagar Society, Street No 13, sant kabir Road, Rajkot-360003 Gujarat');
+defined('INV_DEFULT')   	   OR define('INV_DEFULT', "#");
+defined('GST_NO')       	   OR define('GST_NO', "24AKMPR4923R1ZC");

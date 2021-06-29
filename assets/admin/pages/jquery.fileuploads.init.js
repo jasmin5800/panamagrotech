@@ -116,13 +116,13 @@ $(document).ready(function(){
 				name: "1.jpg",
 				size: 145,
 				type: "image/jpg",
-				file: "assets/images/small/img-1.jpg"
+				file: "../assets/admin/images/small/img-1.jpg"
 			},
 			{
 				name: "2.jpg",
 				size: 145,
 				type: "image/jpg",
-				file: "assets/images/small/img-2.jpg"
+				file: "../assets/admin/images/small/img-2.jpg"
 			}
 		],
         addMore: false,

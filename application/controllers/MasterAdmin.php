@@ -10,7 +10,7 @@ class MasterAdmin extends CI_Controller {
         $this->load->model('UserModel');
         $this->load->database();
         $this->load->library('session');
-        $this->General_model->auth_superadmin();
+        $this->General_model->auth_admin();
     }
     public function index()
     {
@@ -28,7 +28,7 @@ class MasterAdmin extends CI_Controller {
         $columns = array( 
                             0 =>'id_master', 
                             1 =>'username',
-                            2=> 'role_name',
+                            2=> 'role_id',
                             3=> 'status',
                         );
         $limit = $this->input->post('length');
@@ -55,11 +55,9 @@ class MasterAdmin extends CI_Controller {
                 $nestedData['sr_no'] =$i;
                 $nestedData['username'] =$post->username;
                 $nestedData['phone'] =$post->phone;
-                $nestedData['role_name'] = $post->role_name;
-                $nestedData['button'] ='<a href="'.base_url('MasterAdmin/get_editfrm/').$post->id_master.'"><button type="button" class="btn btn-custom btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
-                    <a href="'.base_url('MasterAdmin/password_edit/').$post->id_master.'"> <button type="button" class="btn btn-purple btn-bordered waves-effect btn-sm waves-light">Change Password</button></a>
-                <button type="button" class="btn btn-danger btn-sm" data-id="delete" data-value="'.$post->id_master.'"><i class="fa fa-trash" aria-hidden="true"></i></button>
-                ';
+                $nestedData['role'] = ($post->role_id == 1)?'admin':'master-admin';
+                $nestedData['button'] ='<a href="'.base_url('MasterAdmin/get_editfrm/').$post->id_master.'"><button type="button" class="btn btn-custom waves-effect waves-light"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></a>
+                <button type="button" class="btn btn-danger waves-effect waves-light" data-id="delete" data-value="'.$post->id_master.'"><i class="fa fa-trash" aria-hidden="true"></i></button>';
                 $data[] = $nestedData;
                 $i++;
             }
@@ -88,7 +86,6 @@ class MasterAdmin extends CI_Controller {
                 $password=md5($password);
                 $user=['username '=>$username,
                             'password'=>$password,
-                            'email'=>NULL,
                             'phone'=>$mobile,
                             'role_id'=>$role,
                             'status'=>1,
@@ -131,48 +128,12 @@ class MasterAdmin extends CI_Controller {
                 }else{
                     $user=['username '=>$username,
                             'phone'=>$mobile,
-                            'email'=>NULL,
                             'role_id'=>$role,
                             'status'=>'1'
                         ];
                     $this->General_model->update('master_admin',$user,'id_master',$id);
                     $data['status']="success";
                     $data['msg']="User Updated";
-                    }
-                }else{
-                    $data['status']="error";
-                    $data['msg']="Something is Worng";              
-                }
-            echo json_encode($data);
-    }
-    public function password_edit($id)
-    {
-        $this->General_model->auth_check();
-        $data['page_title']="Password Change";
-        $data['method']="edit";
-        $data['frm_id']="Edit_frm";
-        $data['user']=$this->General_model->get_row('master_admin','id_master',$id);
-        $data['role']=$this->General_model->get_data('role','status','*','1');
-        $this->load->view('admin/controller/header');
-        $this->load->view('admin/controller/sidebar');
-        $this->load->view('admin/setting/changepassword',$data);
-        $this->load->view('admin/controller/footer');
-    }
-    public function password_update()
-    {
-        $this->General_model->auth_check();
-        $password=$this->input->post("password");
-        $id=$this->input->post("id");
-        if(isset($password) && !empty($password) &&  isset($id) && !empty($id)){
-            $count=$this->General_model-> has_duplicate_query("select username  from master_admin where id_master ='".$id."'");
-                if($count>0){
-                    $user=['password '=>md5($password)];
-                    $this->General_model->update('master_admin',$user,'id_master',$id);
-                    $data['status']="success";
-                    $data['msg']="Password Changed";
-                }else{
-                    $data['status']="error";
-                    $data['msg']="User Not Exist";
                     }
                 }else{
                     $data['status']="error";
