@@ -30,30 +30,33 @@
                         <li><a href="<?php echo base_url('Supplier/supplierview')?>">Supplier Detail</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Category </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('Category')?>">Category</a></li>
-                    </ul>
-                </li>
+                
                 <li>
                     <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Product </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="<?php echo base_url('Category')?>">Category</a></li>
                         <li><a href="<?php echo base_url('Product')?>">Product</a></li>
+                    </ul>
+                </li>
+               
+                <li>
+                    <a href="javascript: void(0);"> <i class="mdi mdi-script"></i><span>Sell Invoice </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="<?php echo base_url('SellInvoice/get_addfrm')?>">Create Sale</a></li>                                
+                        <li><a href="<?php echo base_url('SellInvoice')?>">Invoice List</a></li>                                
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript: void(0);"> <i class="mdi mdi-script"></i><span>Purchase Invoice </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="<?php echo base_url('SellPurchase/get_addfrm')?>">Create Purchase</a></li>                                 
+                        <li><a href="<?php echo base_url('SellPurchase')?>">Purchase List</a></li>                                 
                     </ul>
                 </li>
                 <li>
                     <a href="javascript: void(0);"><i class="fa fa-rupee"></i><span>Payment </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="<?php echo base_url('SalePayment')?>">Payment</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="javascript: void(0);"> <i class="mdi mdi-script"></i><span> Invoice </span> <span class="menu-arrow"></span></a>
-                    <ul class="nav-second-level" aria-expanded="false">
-                        <li><a href="<?php echo base_url('SellInvoice')?>"> Sale OC</a></li>
-                        <li><a href="<?php echo base_url('Sellinvoice1')?>"> Sale JB</a></li>
-                        <li><a href="<?php echo base_url('SellPurchase')?>"> Purchase</a></li>                                    
                     </ul>
                 </li>
                 <li>

@@ -48,7 +48,7 @@
                                         <div class="text-center">
                                             <a href="#" class="text-center">
                                                 <!-- <span class="text-v"><?php echo COMPANY ;?></span> -->
-                                                <img src=" <?php echo base_url('assets/admin/images/admin.png')?>" height="70">
+                                                <img src=" <?php echo base_url('assets/panam_login.png')?>" height="70">
                                             </a>
                                         </div>
                                     </div>

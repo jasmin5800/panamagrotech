@@ -4,10 +4,10 @@
                 <div class="topbar-left">
                     <a href="<?php echo base_url('dashbord');?>" class="logo">
                                 <span class="text-left">
-                                    <img src="<?php echo base_url('assets/admin/images/admin.png');?>" alt="" height="40">
+                                    <img src="<?php echo base_url('assets/panam.png');?>" alt="" height="40">
                                 </span>
                         <i>
-                            <img src="<?php echo base_url('assets/admin/images/admin.png');?>" alt="" height="41">
+                            <img src="<?php echo base_url('assets/panam.png');?>" alt="" height="41">
                         </i>
                     </a>
                 </div>

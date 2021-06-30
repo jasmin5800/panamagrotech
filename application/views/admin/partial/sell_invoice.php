@@ -28,18 +28,21 @@
                                           </label>                                   
                                       </div>
                               </div>
+                              
                               <div class="form-group row">
-                                   <label for="gst" class="col-3 col-form-label">Gst Type</label>
-                                    <div class="col-9">
-                                        <select name="gst_type" id="gst_type" required>
-                                          <?php if($method=="add"): ?>
-                                          <option value="1">(S+C)GST</option>
-                                          <option value="2">IGST</option>
-                                          <?php else: ?>
-                                          <option value="<?php echo $sell_invoice->gst_type; ?>"><?php echo (($sell_invoice->gst_type=="1")?"(S+C)GST":"IGST"); ?></option>
-                                          <?php endif; ?>
-                                        </select>
-                                    </div>
+                                  <label for="customer_id" class="col-3 col-form-label">City</label>
+                                      <div class="col-9">
+                                          <select data-live-search="true" name="city_id" id="city_id" data-parsley-required-message="You Must Select 1 Customer" required>
+                                            <option value="0">None</option>
+                                            <?php
+                                            foreach ($city as  $city) {
+                                              echo '<option value="'.$city->id_customer .'"'.
+                                              (($method=="edit")?(($city->id_customer==$sell_invoice->customer_id)?"selected":""):"")
+                                              .' >'.$city->name.'</option>';
+                                            }
+                                            ?>
+                                          </select>
+                                      </div>                                      
                               </div>
                               <div class="form-group row">
                                   <label for="customer_id" class="col-3 col-form-label">Customer</label>
@@ -57,10 +60,10 @@
                                       </div>                                      
                               </div>
                               <div class="form-group row">
-                                  <label for="date" class="col-3 col-form-label">Touch</label>
-                                    <div class="col-9">
-                                        <input type="number" autocomplete="off" step="any" class="form-control Touch"  name="touch" placeholder="Touch" required min="40" max="100" value="<?php echo (($method=="edit")?$sell_invoice->touch:"");?>"  >
-                                    </div>
+                                <label for="address" class="col-3 col-form-label">Address<span class="text-danger">*</span></label>
+                                <div class="col-9">            
+                                    <textarea required="" class="form-control parsley-error" style="min-height: 60px;" name="address" required="" data-parsley-required-message="Address is Required" placeholder="Address"><?php echo (($method=="edit")?$result->address:"");  ?></textarea> 
+                                </div>          
                               </div>
                           </div>
                           <div class="col-md-6">
@@ -75,6 +78,19 @@
                                     <div class="col-9">
                                         <input type="text" class="form-control" id="datepicker-autoclose" title="Date" name="date" placeholder="Date" required value="<?php echo (($method=="edit")?date("d/m/Y",strtotime($sell_invoice->date)):date('d/m/Y'));?>">
                                        <?php echo (($method=="edit")?'<input type="hidden" name="id_sell" required value="'.$sell_invoice->id_sell .'">':"");?>
+                                    </div>
+                              </div>
+                              <div class="form-group row">
+                                   <label for="gst" class="col-3 col-form-label">Gst Type</label>
+                                    <div class="col-9">
+                                        <select name="gst_type" id="gst_type" required>
+                                          <?php if($method=="add"): ?>
+                                          <option value="1">(S+C)GST</option>
+                                          <option value="2">IGST</option>
+                                          <?php else: ?>
+                                          <option value="<?php echo $sell_invoice->gst_type; ?>"><?php echo (($sell_invoice->gst_type=="1")?"(S+C)GST":"IGST"); ?></option>
+                                          <?php endif; ?>
+                                        </select>
                                     </div>
                               </div>
                               <div class="form-group row">
