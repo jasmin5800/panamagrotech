@@ -23,6 +23,13 @@
                         <li><a href="<?php echo base_url('Customer/customerview')?>">Customer Detail</a></li>
                     </ul>
                 </li>
+                 <li>
+                    <a href="javascript: void(0);"> <i class="fa fa-users " aria-hidden="true"></i><span> Supplier </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="<?php echo base_url('Supplier')?>">Supplier</a></li>
+                        <li><a href="<?php echo base_url('Supplier/supplierview')?>">Supplier Detail</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Product </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
