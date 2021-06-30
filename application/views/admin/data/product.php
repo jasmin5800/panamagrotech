@@ -17,12 +17,42 @@
                 <div class="card-box">
                     <center><h4 class="header-title m-t-0"><?php echo (($method=="edit")?"Update Product":"Add Product" )?></h4></center><br>
                     <form id="<?php echo (($method=="edit")?"$frm_id":"$frm_id");?>" class="form-horizontal" role="form" >
+                        <div class="form-group row">
+                            <label for="customer" class="col-3 col-form-label">Category<span class="text-danger">*</span></label>
+                            <div class="col-9">
+                            <select name="category_id">
+                                <option value="0">None</option>
+                                <?php foreach ($category as $cs) { ?>
+                                  <option value="<?php echo $cs->id; ?>" <?php echo (($method=="edit")?(($cs->id==$result->category_id)?"selected":""):"");  ?>> <?php echo $cs->name; ?></option>   
+                                <?php } ?> 
+                            </select>
+                            </div>
+                        </div>
                           <div class="form-group row">
                               <label for="name" class="col-3 col-form-label">Product Name<span class="text-danger">*</span></label>
                               <div class="col-9">
                                   <input placeholder="Product Name" type="text" name="name" title="Product Name" required="" data-parsley-required-message="Product Name is Required" class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->name:"");  ?>">
                               </div>
                           </div>
+                          <div class="form-group row">
+                              <label for="cgst" class="col-3 col-form-label">CGST<span class="text-danger">*</span></label>
+                              <div class="col-9">
+                                  <input placeholder="CGST" type="text" name="cgst"  class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->cgst:''); ?>">
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label for="sgst" class="col-3 col-form-label">SGST<span class="text-danger">*</span></label>
+                              <div class="col-9">
+                                  <input placeholder="SGST" type="text" name="sgst"  class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->sgst:''); ?>">
+                              </div>
+                          </div>
+                          <div class="form-group row">
+                              <label for="igst" class="col-3 col-form-label">IGST<span class="text-danger">*</span></label>
+                              <div class="col-9">
+                                  <input placeholder="IGST" type="text" name="igst"  class="form-control" autocomplete="off" value="<?php echo (($method=="edit")?$result->igst:''); ?>">
+                              </div>
+                          </div>
+                         
                           <div class="form-group row">
                               <label for="hsn_code" class="col-3 col-form-label">HSN Code<span class="text-danger">*</span></label>
                               <div class="col-9">

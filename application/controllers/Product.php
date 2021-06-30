@@ -18,6 +18,7 @@ class  Product extends CI_Controller {
 		$data["method"]="add";
 		$data['frm_id']="Add_frm";
 		$data['setting']=$this->General_model->get_row('settings','s_index','2');
+		$data['category']=$this->General_model->get_data('category','status','*','1');
 		$this->load->view('admin/controller/header');
 		$this->load->view('admin/controller/sidebar');
 		$this->load->view('admin/data/product',$data);
@@ -28,10 +29,11 @@ class  Product extends CI_Controller {
 		$this->General_model->auth_check();
 		$name=ucwords(trim($this->input->post("name")));
 		$hsn=$this->input->post("hsn_code");
+		$category_id=$this->input->post("category_id");
 		if(!isset($hsn) && empty($hsn)){
 			$hsn=NULL;
 		}		
-		if(isset($name) && !empty($name)){
+		if(isset($name) && !empty($name) && isset($category_id) && !empty($category_id)){
 			$count=$this->General_model-> has_duplicate($name,'product','name');
 			if($count>0){
 				$data['status']="error";
@@ -39,6 +41,7 @@ class  Product extends CI_Controller {
 			}else{
 				$detail=['name'=>$name,
 							'hsn_code'=>$hsn,							
+							'category_id'=>$category_id,							
 							'status'=>'1',
 							'created_at'=>date("Y-m-d h:i:s")];
 			$detail=$this->db->insert('product',$detail);
@@ -87,6 +90,9 @@ class  Product extends CI_Controller {
        		$data['frm_id']="Edit_frm";
        		$data['page_title']="Product";       		
 	    	$data['result']=$this->General_model->get_row('product','id_product',$id);
+			$data['category']=$this->General_model->get_data('category','status','*','1');
+					
+
 	    	$this->load->view('admin/controller/header');
 			$this->load->view('admin/controller/sidebar');
 			$this->load->view('admin/data/product',$data);
@@ -97,12 +103,13 @@ class  Product extends CI_Controller {
 	    	$this->General_model->auth_check();
 		    $name=$this->input->post("name");
 			$hsn=$this->input->post("hsn_code");
+			$category_id=$this->input->post("category_id");
 			$status=$this->input->post("status");
 			$id=$this->input->post("id");
 			if(!isset($hsn) && empty($hsn)){
 				$hsn=NULL;
 			}	
-	    	if(isset($name) && !empty($name) && isset($id) && !empty($id)){
+	    	if(isset($name) && !empty($name) && isset($id) && !empty($id) && isset($category_id) && !empty($category_id)){
 				$count=$this->General_model-> has_duplicate_query("select name from product where name ='".$name."' and id_product !='".$id."'");
 				if($count>0){
 					$data['status']="error";
@@ -110,6 +117,7 @@ class  Product extends CI_Controller {
 				}else{
 		    		$detail=['name'=>$name,
 						'hsn_code'=>$hsn,
+						'category_id'=>$category_id,
 						'status'=>$status,
 						];
 		    		$this->General_model->update('product',$detail,'id_product',$id);

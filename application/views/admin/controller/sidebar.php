@@ -31,6 +31,12 @@
                     </ul>
                 </li>
                 <li>
+                    <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Category </span> <span class="menu-arrow"></span></a>
+                    <ul class="nav-second-level" aria-expanded="false">
+                        <li><a href="<?php echo base_url('Category')?>">Category</a></li>
+                    </ul>
+                </li>
+                <li>
                     <a href="javascript: void(0);"> <i class="fa fa-product-hunt" aria-hidden="true"></i><span> Product </span> <span class="menu-arrow"></span></a>
                     <ul class="nav-second-level" aria-expanded="false">
                         <li><a href="<?php echo base_url('Product')?>">Product</a></li>
@@ -58,6 +64,7 @@
                     </ul>
                 </li> 
             </ul>
+            
         </div>
         <div class="clearfix"></div>
     </div>
