@@ -1,5 +1,5 @@
 ###################
-What is 
+What is jasmin
 ###################
 
 CodeIgniter is an Application Development Framework - a toolkit - for people
